@@ -2,7 +2,7 @@
 <html>
 <head>
 <link rel="stylesheet" href="style.css">
-<script src="script.js"></script>
+<script defer src="script.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
 .flex-container {
@@ -41,10 +41,10 @@
 </div>
 
 <div class="flex-container">
-  <div>Slå på</div>
-  <div>Slå av</div>
-  <div>Økomomi modus</div>
-  <div class="dropdown">
+  <div id="on_btn">Slå på</div>
+  <div id="off_btn">Slå av</div>
+  <div id="economy_btn">Økomomi modus</div>
+  <!-- <div class="dropdown">
     <button class="dropbtn">Velg region</button>
     <div class="dropdown-content">
       <a href="#">Oslo / NO1 / Øst-Norge</a>
@@ -53,6 +53,16 @@
       <a href="#">Tromsø / NO4 / Nord-Norge</a>
       <a href="#">Bergen / NO5 / Vest-Norge</a>
     </div>
+  </div> -->
+  <div>
+    <label for="region-select">Region: </label>
+    <select disabled name="region-select" id="region-select">
+      <option value="NO1">Oslo / NO1</option>
+      <option value="NO2">Kristiansand / NO2</option>
+      <option value="NO3">Trondheim / NO3</option>
+      <option value="NO4">Tromsø / NO4</option>
+      <option value="NO5">Bergen / NO5</option>
+    </select>
   </div>
   <div class="slidecontainer">
   <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
