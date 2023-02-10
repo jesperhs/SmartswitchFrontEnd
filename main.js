@@ -1,54 +1,10 @@
+import { getMode, setMode, getArea, setArea } from "./api_connect.js";
+import { createGraph } from "./price_chart.js";
+
 const mode_color = {
   ON: "#50e7f2",
   OFF: "#f25050",
   ECONOMY: "#53f250"
-}
-
-async function getRequest(url) {
-  const response = await fetch(url, {
-    method: "GET",
-    mode: "cors"
-  })
-  return response
-}
-
-async function postRequest(url, body) {
-  const response = await fetch(url, {
-    method: "POST",
-    mode: "cors",
-    headers: {
-      "Accept": "application/json",
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify(body)
-  })
-  return response
-}
-
-async function getMode() {
-  const response = await getRequest("https://smartswitch.gerhardadler.no/get_mode")
-  const json = await response.json()
-  return json.mode
-}
-
-async function setMode(mode) {
-  const response = await postRequest("https://smartswitch.gerhardadler.no/set_mode", {
-    mode: mode
-  })
-  return response
-}
-
-async function getArea() {
-  const response = await getRequest("https://smartswitch.gerhardadler.no/get_area")
-  const json = await response.json()
-  return json.area
-}
-
-async function setArea(area) {
-  const response = await postRequest("https://smartswitch.gerhardadler.no/set_area", {
-    area: area
-  })
-  return response
 }
 
 function modeBtnClick(setmode) {
@@ -78,6 +34,7 @@ document.getElementById("region-select").addEventListener("change", (event) => {
     .then((response) => {
       if (response.status === 201) {
         event.target.disabled = false
+        createGraph()
       } else {
         alert("error")
       }
@@ -94,3 +51,5 @@ getArea()
     document.getElementById("region-select").disabled = false
     document.getElementById("region-select").value = area
   })
+
+createGraph()
